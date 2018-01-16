@@ -1,0 +1,78 @@
+<!--<loading hidden="{{hidden}}">加载中...</loading>-->
+<import src="../template/template.wxml"/>
+<view class="swiper-content-item" wx:for="{{orderList}}">
+    <view class="swiper-item-top">
+        <text>{{item.store_name}}</text>
+        <text wx:if="{{item.pay_type == '未支付' && item.status_type != -2 && item.status_type != -1 && item.real_fee != 0}}" class="font-orange">等待支付</text>
+        <text wx:if="{{item.status_type != 3 && item.pay_type == '未支付' && item.status_type != -2 && item.status_type != -1 && item.real_fee == 0}}" class="font-orange">{{item.status}}</text>
+        <text wx:if="{{(item.status_type == -1 || item.status_type == 3 || item.status_type == -2)}}">{{item.status}}</text>
+        <text wx:if="{{item.status_type != 3 && (item.pay_type != '未支付' && (item.status_type == 0 || item.status_type == 1))}}" class="font-orange">{{item.status}}</text>
+    </view>
+    <view class="swiper-item-middle clear" catchtap="gotoOrderDetail" data-ordersn="{{item.order_sn}}" data-storeId="{{item.store_id}}" data-orderId="{{item.id}}" data-mode="{{item.mode}}">
+        <view class="swiper-item-left">
+            <image src="{{item.thumb || '/images/avatar.png'}}"></image>
+            <view wx:if="{{item.mode == '堂点'}}">
+                <text>取餐号</text>
+                <text>{{item.meal_number || '000'}}</text>
+            </view>
+        </view>
+
+        <view class="swiper-item-center {{item.mode != '堂点'?'reserve':''}}">
+
+            <view class="table-name" wx:if="{{item.mode == '堂点'}}">{{item.table_name}}</view>
+            <view class="table-name" wx:if="{{item.mode == '预定' || item.mode == ''}}">{{item.reserve_title}}</view>
+            <view class="dish-name" wx:if="{{item.mode == '堂点'}}">
+                <text>{{item.goods_title}}</text>
+                <text>等{{item.total_num}}件商品</text>
+            </view>
+            <view class="dish-name dish-name-pre" wx:if="{{item.mode == '外卖'}}">
+                <text>{{item.goods_title}}</text>
+                <text>等{{item.total_num}}件商品</text>
+            </view>
+            <view class="pay-method" wx:if="{{item.mode == '预定' || item.mode == ''}}">
+                <text>预付款: ￥{{item.real_fee}}</text>
+                <text>{{item.pay_type}}</text>
+            </view>
+            <view class="pay-method" wx:if="{{item.mode != '预定' && item.mode != ''}}">
+                <text>￥{{item.real_fee}}</text>
+                <text>{{item.pay_type}}</text>
+            </view>
+            <view class="reserve-time" wx:if="{{(item.mode == '预定' || item.mode == '') && (item.pay_type == '未支付' && item.status_type != -1 && item.status_type != -2 && item.real_fee != 0)}}">预约时间: 2017-07-10 18:00</view>
+        </view>
+
+        <view class="swiper-item-right">
+            <image src="/images/order-type-1.png" wx:if="{{item.mode == '外卖'}}"></image>
+            <image src="/images/order-type-2.png" wx:if="{{item.mode == '预定' || item.mode == ''}}"></image>
+            <image src="/images/order-type-3.png" wx:if="{{item.mode == '堂点'}}"></image>
+            <image src="/images/ic_youjiantou.png"></image>
+        </view>
+
+    </view>
+
+
+    <view class="swiper-item-bottom" wx:if="{{item.pay_type == '未支付' && item.status_type != -1 && item.status_type != -2 && item.real_fee != 0}}">
+        <view class="pay-time">
+            <view class="surplus-time">支付剩余时间: <text class="surplus-time-text" wx:if="{{item.minutes && surplusFlag}}">{{item.minutes}}分{{item.seconds}}秒</text></view>
+            <button data-id="{{item.id}}" data-sn="{{item.order_sn}}" data-time="{{item.dateline}}" catchtap="immediatePayment">立即支付</button>
+        </view>
+    </view>
+
+    <view class="swiper-item-bottom" wx:if="{{(!(item.pay_type == '未支付' && item.status_type != -1 && item.status_type != -2 && item.real_fee != 0) && (item.mode == '预定' || item.mode == ''))}}">
+        <view class="pay-time">
+            <text>预约时间: {{item.reserve_time}}</text>
+        </view>
+    </view>
+    <view class="swiper-item-bottom-nor" wx:if="{{!(item.pay_type == '未支付' && item.status_type != -1 && item.status_type != -2 && item.real_fee != 0) && (item.mode != '预定' && item.mode != '')}}"></view>
+
+</view>
+
+
+<view class="order-nor" wx:if="{{!dataFlag && orderList.length != 0}}">没有更多订单了</view>
+<view class="swiper-content-text" wx:if="{{orderList.length == 0 && dataFlag == false}}">
+    <image src="/images/norecord-bg.png"></image>
+    <view>
+        <text>还没有产生相关记录</text>
+    </view>
+</view>
+
+<template wx:if="{{!isGetAuthSetting}}" is="unauth"></template>

@@ -1,0 +1,71 @@
+<!--pages/index/reserve/reserve.wxml-->
+<view class="reserve-message">
+    <view class="reserve-item border-1px-bottom">
+        <text class="col-2">预订桌台</text>
+        <view class="col-8" catchtap="hideShowModleTable">
+            <!--<input type="text" placeholder="{{tableItem.title || '请选择'}}" readonly="readonly"/>-->
+            <view class="table-view {{tableItem?'active':''}}">{{tableItem || '请选择'}}</view>
+            <image src="/images/icon_pre.png"></image>
+        </view>
+    </view>
+    <view class="reserve-item">
+        <text class="col-2">到店时间</text>
+        <view class="col-8" catchtap="hideShowModleDate">
+            <!--<input type="text" placeholder="{{date || ''}} {{time || '请选择'}}" readonly="readonly"/>-->
+            <view class="time-view {{date?'active':''}}">{{date || ''}} {{time || '请选择'}}</view>
+            <image src="/images/icon_pre.png"></image>
+        </view>
+    </view>
+</view>
+<view class="person-message">
+<view class="preson-message-item border-1px-bottom">
+    <text class="col-5">姓名</text>
+    <input class="col-5" type="text" placeholder-class="placeholder-color" placeholder="请填写联系人姓名" bindinput="listenerUserInput" value="{{username}}"/>
+</view>
+<view class="preson-message-item">
+    <text class="col-5">电话</text>
+    <input class="col-5" type="number" placeholder-class="placeholder-color" placeholder="请填写联系人手机" value="{{telephone}}" maxlength="11" onkeyup="this.value=this.value.replace(/\D/g,'')" bindinput="listenerPhoneInput"/>
+</view>
+</view>
+<view class="remarks">
+<textarea placeholder-class="{{placeholderStyle?'placeholder-color-w':'placeholder-color'}}" value="{{remarks}}" placeholder="请输入备注（可不填）" bindinput="listenerRemarks"></textarea>
+<view class="font-size">{{fontSize}}/45</view>
+</view>
+<view class="btn-group">
+<button catchtap="submieForm" class="btn btn-determine" wx:if="{{storeReservation.tablezones.reservation_price == 0 || storeReservation.tablezones.length == 0}}">确定</button>  <!--submieForm-->
+<button catchtap="submieForm" class="btn btn-determine" wx:if="{{storeReservation.tablezones.reservation_price != 0 && storeReservation.tablezones.length != 0}}">预付￥{{storeReservation.tablezones.reservation_price}}</button>  <!--submieForm-->
+</view>
+
+<view class="mark-bg-table {{showViewTable?'show':'hide'}}" catchtap="hideShowModleTable">
+<view class="table">
+    <view class="table-item-list" wx:for="{{storeReservation.tablezones_list}}" wx:key="storeReservation.tablezones_listKey"> <!-- storeReservation -->
+        <view class="table-item {{classIndex === index?'active':''}}" data-index="{{index}}" data-item="{{item}}" catchtap='chooseTable'>{{item.title}} {{item.user_limit}}</view>
+    </view>
+</view>
+</view>
+
+<view class="mark-bg-time {{showViewDate?'show':'hide'}}" catchtap="hideShowModleDate">
+<view class="time-modle">
+    <view class="time-modle-top">
+        <view class="time-date">
+            <view class="time-date-item {{dateIndex === index?'active':''}}" wx:for="{{storeReservation.dates}}" wx:key="storeReservation.datesKey" data-index="{{index}}" data-item="{{item.datetime}}" catchtap="chooseDate">
+                <text>{{item.date}}</text>
+            </view>
+        </view>
+        <view class="time-hour">
+            <view class="time-hour-item {{index === checkIndex?'active':''}} {{item.is_enable != 1?'font-nor':''}}" data-index="{{index}}" wx:for="{{storeReservation.times_list}}" wx:key="storeReservation.times_listKey"  data-item="{{item}}" wx:if="{{storeReservation.times_list.length != 0}}" wx:for-index="index" catchtap="chooseTime">
+                <text>{{item.time}}</text>
+                <image src="/images/icon_check_pre_1.png" wx:if="{{index == checkIndex}}"></image>
+                <view class="check-hour" wx:else></view>
+            </view>
+            <view class="item-null" wx:if="{{storeReservation.times_list.length == 0}}">
+                <view>
+                    没有可选的时间点
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="time-mode-btn" catchtap="determine">确定</view>
+</view>
+</view>
+

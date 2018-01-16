@@ -1,0 +1,3 @@
+<view class="wrapper">
+<!-- <map id="map" longitude="{{site.lng}}" latitude="{{site.lat}}" controls="{{controls}}" class="map"></map> -->
+</view>

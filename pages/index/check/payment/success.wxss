@@ -1,0 +1,8 @@
+/* pages/index/check/payment/success.wxss */
+.check-type{width: 100%;height: 240rpx;text-align: center;display:flex;flex-direction:column;padding:50rpx 0;}
+.check-type .check-success {margin: 50rpx 0;}
+.check-type .s-text{margin-top: 40rpx;font-size: 34rpx;}
+.check-result .r-title{font-size: 28rpx;color: #888888;padding: 0 30rpx;}
+.check-result .result{background: #fff;font-size: 34rpx;border-bottom: 1px solid #e5e5e5;border-top:1px solid #e5e5e5;margin-top: 19rpx;padding-left: 30rpx;}
+.result-item{padding: 19rpx 0;display: flex;flex-direction: row;justify-content: space-between;padding-right: 30rpx;border-bottom: 1px solid #e5e5e5;}
+.result-item:last-child{border-bottom: none;}

@@ -1,0 +1,48 @@
+<view class="wrapper">
+  <!--概述start  -->
+  <view class="summary">
+    <view class="income">
+      <view class="title">
+        共获得积分
+      </view>
+      <view class="num">
+        {{info.income}}
+      </view>
+    </view>
+    <view class="expend">
+      <view class="title">
+        共消耗积分
+      </view>
+      <view class="num">
+        {{info.expend}}
+      </view>
+    </view>
+  </view>
+  <!-- 概述end -->
+  <!--有记录显示列表start  -->
+  <view wx:if="{{info.data.length>0}}" class="record-list">
+    <view wx:for="{{info.data}}" class="record-item">
+      <view>
+        <text class="left-text">{{item.remark}}</text><text class="right-text {{item.num>0?'pink':'blue'}}">{{item.num>0?'+':''}}{{item.num}}</text>
+      </view>
+      <view>
+        <text class="left-text">{{item.timeStr}}</text><text class="right-text"> </text>
+      </view>
+    </view>
+    <!--<view class="record-item">
+      <view>
+        <text>会员卡充值赠送积分</text><text class="blue">-20.00</text>
+      </view>
+      <view>
+        <text>2017-07-11</text><text> </text>
+      </view>
+    </view>-->
+  </view>
+  <!--有记录显示列表end  -->
+  <!--无记录显示背景start  -->
+  <view wx:if="{{isShowPoor}}" class="norecord-bg">
+    没有找到相关记录
+  </view>
+  <!--无记录显示背景end  -->
+
+</view>

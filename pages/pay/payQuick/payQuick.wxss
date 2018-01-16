@@ -1,0 +1,11 @@
+.shop-info{display:flex;flex-direction:column;justify-content:center;align-items:center;height:392rpx;box-shadow: 0 1rpx 0 0 rgba(255,255,255,.3) inset;}
+.shop-info .logo{width:164rpx;height:164rpx;border-radius: 7rpx;}
+.shop-info .name{color:#000;font-size:34rpx;margin-top:20rpx;padding: 0 30rpx;text-align: center;}
+.total{display:flex;background:#fff;padding-left:30rpx;height:88rpx;line-height:88rpx;font-size:34rpx;color:#000;border-bottom: 0.5px solid #e5e5e5;border-top:0.5px solid #e5e5e5;}
+.total label{flex:0 0 154rpx;margin-right:20rpx}
+.total input{flex:1;height:100%;line-height:100%;padding-right:30rpx}
+.tips{margin-top:20rpx;font-size:28rpx;color:#e64340;padding-left:30rpx}
+.btn-wrapper{margin-top:60rpx;width:100%;box-sizing:border-box;padding:0 40rpx}
+.btn-wrapper button{background-color:#fd711c;border-radius:10rpx;font-size:36rpx;color:#fff;text-align:center;line-height:94rpx;height:94rpx}
+button[disabled][type=default],wx-button[disabled]:not(type){background-color:#fd711c!important;border-radius:10rpx;font-size:36rpx;color:#fff!important;text-align:center;line-height:94rpx;height:94rpx;opacity:.4}
+.btn-disable{opacity:.4}

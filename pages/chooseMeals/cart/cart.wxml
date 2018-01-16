@@ -1,0 +1,63 @@
+<view class="wrapper">
+  <view class="tips">下拉刷新，看看其他小伙伴点了哪些菜</view>
+  <view class="list-header">
+    <view class="title">商品列表</view>
+    <view class="icons">
+      <view bindtap="gotoChurch" class="add">增加</view>
+      <view bindtap="toggleDialog" class="clearup">清空</view>
+    </view>
+  </view>
+  <view class="list">
+    <view class="item {{index == cartGoodsList.length-1 ? '':'border-1px'}}" wx:for="{{cartGoodsList}}" wx:for-item="goods" wx:for-index="index">
+      <view class="avatar">
+        <image src="{{goods.headimgurl}}"></image>
+        <view class="name">{{goods.nickname}}</view>
+      </view>
+      <view class="goods-name">
+        <view class="title">
+        <view class="goods-title">{{goods.title}}</view>
+          <icon wx:if="{{goods.is_sale == 1}}" class="ic_tejia" />
+          <view wx:if="{{goods.special_type == 2}}" class="icon-box" ><image src="/images/icon_food_tag_back.png"></image></view>
+          <view wx:if="{{goods.special_type == 1}}" class="icon-box" ><image src="/images/icon_food_tag_give.png"></image></view>
+          <view wx:if="{{goods.is_unpack == 1}}" class="icon-box icon-box-pack" ><image src="/images/icon_food_tag_pack.png"></image></view>
+        </view>
+        <view wx:if="{{goods.option_name}}" class="desc">{{goods.option_name}}</view>
+        <view class="price">
+          <text class="little">¥</text>
+          <text class="orange">{{goods.is_sale == 1?goods.sale_price:goods.marketprice}} </text>
+          <text wx:if="{{goods.is_sale == 1}}" class="little delline"> ¥ {{goods.marketprice}}</text>
+        </view>
+      </view>
+      <view class="operate">
+        <view wx:if="{{goods.cart_id != '0'}}" data-index="{{index}}" bindtap="removeGoodsToShopcart" class="btn-reduce">
+          <image src="/images/icon_reduce.png"></image>
+        </view>
+        <!--<input class="num" class="num" type="text" value="1"  />
+        -->
+        <text class="num">{{goods.special_type==2&&goods.total!=0?'-':''}}{{goods.total}}</text>
+        <view wx:if="{{goods.cart_id != '0'}}" data-index="{{index}}" bindtap="addGoodsToShopcart" class="btn-plus">
+          <image src="/images/icon_plus.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{pad}}" class="location">{{tableInfo.text}} 台位费：{{pad.table_fee}}元</view>
+  <view wx:else class="location">{{tableInfo.text}} {{tableInfo.table_fee == 0?'':('(台位费：'+tableInfo.table_fee+'元/'+(tableInfo.table_fee_type==1?'整桌)':'每人)'))}}</view>
+  <view class="people">
+    <label>用餐人数:</label>
+    <input disabled="{{pad}}" placeholder-class="" type="number" value="{{pad.counts || peopleNum}}" bindinput="getPeopleNum" maxlength="3" placeholder="请输入用餐人数"  />
+  </view>
+  <view class="footer border-1px-top">
+    <view class="num">
+      <view class="num-title">总计：</view>
+      <view class="orange">¥{{allPrice}}</view>
+    </view>
+    <view class="btn">
+      <button disabled="{{cartGoodsList.length == 0 || (totalPrice+table_fee)<tableInfo.limit_price}}" bindtap="{{(totalPrice+table_fee)>=tableInfo.limit_price?'gotoConfirmOrder':''}}">{{(totalPrice+table_fee)>=tableInfo.limit_price?'提交订单':'差￥'+ddValue}}</button>
+    </view>
+  </view>
+</view>
+<!-- 确认弹窗start -->
+<!--<modal hidden="{{!isShowConfirmDialog}}" title="确认要清空吗?" confirm-text="清空" cancel-text="取消" bindcancel="toggleDialog"
+       bindconfirm="dialogConfirm">确认要清空吗</modal>-->
+<!-- 确认弹窗end -->

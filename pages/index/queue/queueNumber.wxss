@@ -1,0 +1,19 @@
+/* pages/line/queueNumber/queueNumber.wxss */
+.query-number{background: #fff; border-top: 1px solid #e6e6e6; padding-bottom: 80rpx;}
+.query-number .query-number-item{height: 120rpx; display: flex; align-items: center; box-sizing: border-box; padding: 0 30rpx; justify-content: space-between;}
+.query-number-left{font-size: 32rpx; color: #000; }
+.query-number-right{font-size: 26rpx; color: #888;}
+.query-number-right text:last-child{font-size: 40rpx; display: inline-block; width: 70rpx; text-align: center;font-weight: bold;}
+.font-green{color: #0cbb09;}
+.font-orange{color: #ffaa00;}
+.query-number .prompt{font-size: 26rpx; padding: 30rpx; color: #b2b2b2; display: block;}
+.btn-group{margin-top: 100rpx; text-align: center;}
+.btn-group .btn{width: 670rpx; height: 94rpx; display: inline-block;}
+.btn-determine{color: #fff; background: #fd711c;}
+.store-info{background: #fff; margin-top: 16rpx;}
+.store-info .store-title{padding: 25rpx 30rpx; font-size: 34rpx; color: #000;}
+.store-info-item text{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.store-info .store-info-item{height: 94rpx; line-height: 94rpx; display: flex; box-sizing: border-box; padding: 0 30rpx; font-size: 28rpx; color: #353535; align-items: center;}
+.store-info .store-info-item image:first-child{width: 40rpx; height: 40rpx; margin-right: 22rpx;}
+.store-info .store-info-item image:last-child{width: 40rpx; height: 40rpx;}
+.store-info .store-info-item text{display: block; flex: 1;}

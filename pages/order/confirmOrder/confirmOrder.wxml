@@ -1,0 +1,144 @@
+<view class="order-confirm-wrapper">
+  <view class="classname">
+    <image class="line-2px" src="/images/2pxline.png"></image>
+  </view>
+  <!-- 收货地址start  如果是堂点就不渲染 -->
+  <view wx:if="{{mode == 2}}" class="order-address">
+    <view bindtap="gotoChooseAddress" class="address-wrapper">
+      <view wx:if="{{addressList.length > 0}}" class="address-detail">
+        <view class="address">{{addressList[addressIndex].name}}</view>
+        <view class="user-name">{{addressList[addressIndex].realname}} {{addressList[addressIndex].gender_text}} {{addressList[addressIndex].mobile}}</view>
+      </view>
+      <view wx:else class="address-detail">
+        请选择收货地址
+      </view>
+      <icon class="icon icon-arrow-right"></icon>
+    </view>
+    <view bindtap="toggleTimeChoose" class="dilivery-time">
+      <view class="title">送达时间</view>
+      <view class="choose-time">
+        {{sendTime}}
+        <icon class="icon icon-arrow-right" />
+      </view>
+    </view>
+  </view>
+  <!-- 收货地址end -->
+  <!-- 商品列表start -->
+  <view class="order-detail-wrapper">
+    <view class="detail-header">商品列表</view>
+    <view class="goods-list">
+      <view wx:for="{{orderInfo.list}}" wx:for-index="index" wx:for-item="item" class="item">
+        <view class="primary-content">
+          <view class="name">
+            <view wx:if="{{item.special_type == 2}}" class="icon-box"><image src="/images/icon_food_tag_back.png"></image></view>
+            <view wx:if="{{item.special_type == 1}}" class="icon-box"><image src="/images/icon_food_tag_give.png"></image></view>
+            <view wx:if="{{item.is_unpack == 1}}" class="icon-box icon-box-pack"><image src="/images/icon_food_tag_pack.png"></image></view>
+            {{item.title}}
+            <icon wx:if="{{item.is_sale == 1}}" class="icon icon-tejia" />
+          </view>
+          <view class="num">x{{item.total}}</view>
+          <view class="price">{{(item.special_type == 2 && item.sumPrice != 0)?'-':''}}¥{{item.sumPrice}}</view>
+        </view>
+        <view wx:if="{{item.option_name}}" class="add-content">{{item.option_name}}</view>
+      </view>
+    </view>
+    <!-- 总计start -->
+    <view class="goods-total">
+      <view wx:if="{{orderInfo.table_fee}}" class="super-price">
+        <view class="title">台位费</view>
+        <view class="num">¥{{orderInfo.table_fee}}</view>
+      </view>
+      <view wx:if="{{mode == 2}}" class="dilivery-price">
+        <view class="title">配送费</view>
+        <view class="num">¥{{orderInfo.dispatch_price}}</view>
+      </view>
+      <view wx:if="{{false}}" class="super-price">
+        <!--<view class="title">不参与优惠金额（特价菜）</view>-->
+        <view class="num">¥{{orderInfo.no_discount_fee}}</view>
+      </view>
+      <view class="common-price">
+        <view class="title">参与优惠金额</view>
+        <view class="num">¥{{orderInfo.use_discount_fee}}</view>
+      </view>
+    </view>
+    <!-- 总计end -->
+  </view>
+  <!-- 商品列表end -->
+  <!-- 注释start -->
+  <view class="info">
+    <!--<icon class="icon icon-info" />-->
+      <view class="icon-info-box"><image src="../../../images/ic_info.png"></image></view>
+    <view class="info-box">
+        特价商品不享受会员折扣和卡券优惠
+    </view>
+  </view>
+  <!-- 注释end -->
+  <!-- 优惠选项start -->
+  <view class="zhekou">
+    <view class="youhuiquan">
+      <view class="title">优惠券</view>
+      <view bindtap="gotoGetCoupons" class="cont" wx:if="{{orderInfo.coupon_count <= 0}}">点击领取优惠券
+        <icon class="icon icon-arrow-right" />
+      </view>
+      <view bindtap="gotoChooseCoupons" class="cont" wx:else>
+        <!--{{couponId?('-¥'+(orderInfo.coupon_discount_fee?orderInfo.coupon_discount_fee:'0')):(orderInfo.coupon_count+'张可用'))}}-->
+        {{couponId?('-¥'+(orderInfo.coupon_discount_fee?orderInfo.coupon_discount_fee:'0')):(orderInfo.coupon_count+'张可用')}}
+        <icon class="icon icon-arrow-right" />
+      </view>
+    </view>
+    <view wx:if="{{orderInfo.card_is_opened}}" class="vipcard">
+      <view class="title">会员卡</view>
+      <view bindtap="gotoGetVipCard" wx:if="{{orderInfo.card_discount.length<=0}}" class="cont">点击领取会员卡
+        <icon class="icon icon-arrow-right" />
+      </view>
+      <view wx:else class="cont">
+        {{orderInfo.card_discount.discount_type == 1?orderInfo.card_discount.group_name+'满'+orderInfo.card_discount.condition+'减'+orderInfo.card_discount.discount+'元':(orderInfo.card_discount.condition == 0?orderInfo.card_discount.group_name+'打'+orderInfo.card_discount.rate+'折':orderInfo.card_discount.group_name+'满'+orderInfo.card_discount.condition+'元'+'打'+orderInfo.card_discount.rate+'折')}}
+        <!--{{orderInfo.card_discount.group_name}}打{{orderInfo.card_discount.discount*10}}折-->
+        <!--<switch color="#fd711c" checked="{{switchChecked}}" bindchange="isUseVipCard" type="switch" />-->
+        <view bindtap="isUseVipCard" class="switch"><image src="{{switchChecked?'/images/switch-on.png':'/images/switch-off.png'}}"></image></view>
+      </view>
+    </view>
+    <view class="xiaoji">
+      小计 <text class="orange">
+          ¥{{orderInfo.price}}</text>
+    </view>
+  </view>
+  <!-- 优惠选项end -->
+
+  <!-- 备注start -->
+  <view class="remark-box">
+      <view class="title">备注</view>
+      <view bindtap="goRemarks" class="remark-c">
+        <icon class="icon icon-arrow-right" />
+        <view class="content {{remarkFlag?'active':''}}">{{remarks}}</view>
+      </view>
+  </view>
+
+  <!-- 备注end -->
+  <view class="footer">
+    <text>已优惠¥{{orderInfo.discount_fee?orderInfo.discount_fee:0}}</text>
+    <text>
+          合计 <text class="orange">
+          ¥{{orderInfo.price}}</text>
+    </text>
+    <button disabled="{{(mode == 2 && addressList.length<=0) || (orderInfo.price == 0)}}" bindtap="gotoPayOrder">去支付</button>
+  </view>
+  <!-- 时间选择器弹层start -->
+  <view catchtap="catchtap" wx:if="{{isShowTimeChoose}}" class="time-choose">
+    <view bindtap="toggleTimeChoose" class="mask"></view>
+    <view class="wrapper">
+      <view class="content">
+        <scroll-view scroll-y="{{true}}" class="day-list">
+          <view bindtap="selectDay" data-index="{{index}}" class="{{selectedIndex.x == index?'day-selected':''}}" wx:for-index="index" wx:for="{{timer.days}}">{{item}}</view>
+        </scroll-view>
+        <scroll-view scroll-y="{{true}}" class="hour-list">
+          <view bindtap="selectHour" data-index="{{index}}" class="{{selectedIndex.y == index?'hour-selected':''}}" wx:for-index="index" wx:for="{{timer.hours[selectedIndex.x]}}">{{item}}</view>
+        </scroll-view>
+      </view>
+      <view class="btn">
+        <button bindtap="toggleTimeChoose">完成</button>
+      </view>
+    </view>
+  </view>
+  <!-- 时间选择器弹层end -->
+</view>

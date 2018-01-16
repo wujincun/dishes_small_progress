@@ -1,0 +1,198 @@
+<view class="order-detail-wrapper">
+  <!--订单状态start -->
+  <view class="order-type">
+    <image src="../../../images/icon_warning_4.png" wx:if="{{orderDetail.status == 0}}"></image>
+    <image src="../../../images/icon_warning_2.png" wx:if="{{orderDetail.status == -1 || orderDetail.status == -2}}"></image>
+    <image src="../../../images/warnning-3.png" wx:if="{{orderDetail.status == 1 || orderDetail.status == 3}}"></image>
+    <view class="order-text">
+      {{orderMessage}}
+    </view>
+    <text class="timer" wx:if="{{(orderDetail.pay_type == 0 && timerFlag == true) && (orderDetail.status != -1 && orderDetail.status != -2 && orderDetail.status != 3 && orderDetail.status != -3 )}}">剩余时间：{{minutes}} 分 {{seconds}} 秒</text>
+  </view>
+  <!--订单状态end  -->
+  <!--堂点的话，位置信息start  -->
+  <view class="location" wx:if="{{orderDetail.mode == 1}}">
+    <view class="people-num border-1px">
+      人数：<text>{{orderDetail.counts}}</text>
+    </view>
+    <view class="table-num border-1px">
+      桌台：<text>{{orderDetail.table_name}}</text>
+    </view>
+    <view class="remarks border-1px">
+      备注：<text>{{orderDetail.remark || '无'}}</text>
+    </view>
+  </view>
+  <!--堂点的话，位置信息end  -->
+  <!--外卖的话，位置信息start  -->
+  <view class="dilivery-location" wx:if="{{orderDetail.mode == 2}}">
+    <view class="location-info border-1px">
+      <view class="title">
+        收货信息:
+      </view>
+      <view class="cont">
+        <view>
+          <text>{{orderDetail.username}}</text><text class="number">{{orderDetail.tel}}</text>
+        </view>
+        <view class="address">{{orderDetail.address}}</view>
+      </view>
+    </view>
+    <view class="dilivery-time border-1px">
+      <view class="title">送达时间:</view>
+      <view class="cont">
+        {{orderDetail.meal_time}}
+      </view>
+    </view>
+    <view class="dilivery-remarks">
+      <view class="title">备<text>备注</text>注:</view>
+      <view class="cont">{{orderDetail.remark || '无'}}</view>
+    </view>
+  </view>
+  <!--外卖的话，位置信息end  -->
+  <!-- 订单详情start -->
+  <view class="goods-detail">
+    <!--商品列表start  -->
+    <view class="goods-list">
+      <view class="goods-item {{index == orderDetail.goods.length-1?'':'border-1px'}}" wx:for="{{orderDetail.goods}}">
+        <view class="goods-name">
+          <view>{{item.goods_title}}<icon class="icon-tejia" wx:if="{{item.goods_is_sale == 1}}"/></view>
+          <view>
+            <image src="/images/icon_food_tag_back.png" wx:if="{{item.special_type == 2}}"></image>
+            <image src="/images/icon_food_tag_give.png" wx:if="{{item.special_type == 1}}"></image>
+            <image class="icon-image" src="/images/icon_food_tag_pack.png" wx:if="{{item.is_unpack == 1}}"></image>
+          </view>
+        </view>
+        <view class="goods-desc">
+          <text>{{item.goods_option_name || '默认规格'}}</text>
+          <text>×{{item.goods_total}}{{item.goodsunitname}}</text>
+          <text wx:if="{{item.special_type != 2}}">¥{{item.price}}</text>
+          <text wx:if="{{item.special_type == 2}}">- ¥{{(item.goods_price * item.goods_total)*100/100}}</text>
+
+        </view>
+      </view>
+    </view>
+    <view class="total-wrapper">
+      <view class="dilivery-price" wx:if="{{orderDetail.mode == 2}}">
+        <view class="title">配送费</view>
+        <view class="num">¥{{orderDetail.dispatchprice}}</view>
+      </view>
+      <view class="dilivery-price" wx:if="{{orderDetail.mode == 1}}">
+        <view class="title">台位费</view>
+        <view class="num">¥{{orderDetail.table_fee}}</view>
+      </view>
+      <view class="total" wx:if="{{orderDetail.add_fee}}">
+        <view class="title">加收</view>
+        <view class="num">¥{{orderDetail.add_fee}}</view>
+      </view>
+      <view class="total">
+        <view class="title">合计</view>
+        <view class="num">¥{{orderDetail.total_price}}</view>
+      </view>
+      <!--<view class="super-price">-->
+        <!--<view class="title">不参与优惠金额（特价菜）</view>-->
+        <!--<view class="num">¥{{orderDetail.no_discount_fee ||0.00}}</view>-->
+      <!--</view>-->
+      <view class="common-price">
+        <view class="title">优惠金额</view>
+        <view class="num" wx:if="{{orderDetail.discount_fee == 0}}">¥{{orderDetail.discount_fee}}</view>
+        <view class="num" wx:if="{{orderDetail.discount_fee != 0}}">- ¥{{orderDetail.discount_fee}}</view>
+      </view>
+      <!--优惠项目列表-->
+      <view class="common-price-child" wx:for="{{orderDetail.order_discount}}">
+        <!--<view class="title hide" wx:if="{{item.discount_type == 1}}">加收</view>-->
+        <view class="title" wx:if="{{item.discount_type == 2}}">减免</view>
+        <view class="title" wx:if="{{item.discount_type == 3}}">折扣</view>
+        <view class="title" wx:if="{{item.discount_type == 4}}">抹零</view>
+        <view class="title" wx:if="{{item.discount_type == 5}}">微信优惠券</view>
+        <view class="title" wx:if="{{item.discount_type == 6}}">系统优惠券</view>
+        <view class="title" wx:if="{{item.discount_type == 7}}">会员卡折扣</view>
+        <view class="num">-￥{{item.discount_num}}</view>
+      </view>
+      <view class="info">
+        <icon class="icon-info" />特价商品不享受会员折扣和卡券优惠
+      </view>
+      <view class="add border-1px-top" style="height: {{(orderDetail.is_pay != 0 && (orderDetail.status != -1 && orderDetail.status != -2))? 58:84}}rpx"  wx:if="{{!((orderDetail.pay_type == 0 && timerFlag == true) && (orderDetail.status != -1 && orderDetail.status != -2))}}">
+        <view class="title" wx:if="{{orderDetail.is_pay != 0 && (orderDetail.status != -1 && orderDetail.status != -2)}}">
+          已付
+        </view>
+        <view class="title" wx:else>
+          应付
+        </view>
+        <view class="num" style="color:#e64340" wx:if="{{orderDetail.is_pay != 0 && (orderDetail.status != -1 && orderDetail.status != -2)}}">
+          ¥{{orderDetail.real_fee}}
+        </view>
+        <view class="num" wx:else>
+          ¥{{orderDetail.real_fee}}
+        </view>
+      </view>
+      <view class="pay-method" wx:for="{{orderDetail.has_payed_info}}" wx:if="{{orderDetail.is_pay != 0 && (orderDetail.status != -1 && orderDetail.status != -2)}}">
+        <view class="title" wx:if="{{item.pay_type == 1}}">余额</view>
+        <view class="title" wx:if="{{item.pay_type == 2}}">微信</view>
+        <view class="title" wx:if="{{item.pay_type == 3}}">现金</view>
+        <view class="title" wx:if="{{item.pay_type == 11}}">支付宝</view>
+        <view class="title" wx:if="{{item.pay_type == 5}}">银行卡</view>
+        <view class="num">￥{{item.real_fee}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 订单详情end -->
+  <!-- 订单时间start -->
+  <view class="order-time">
+    <view class="time">
+      <view class="time-space">
+        <view class="time-item">下</view>
+        <view class="time-item">单</view>
+        <view class="time-item">时</view>
+        <view class="time-item">间:</view>
+        <!--<view class="time-item"></view>-->
+      </view>{{orderDetail.dateline}}
+    </view>
+    <view class="uuid">
+      <view class="time-space">
+        <view class="time-item">订</view>
+        <view class="time-item">单</view>
+        <view class="time-item">号:</view>
+        <!--<view class="time-item"></view>-->
+      </view>{{orderDetail.order_sn}}
+    </view>
+  </view>
+  <!-- 订单时间end -->
+  <!-- 订单删除start -->
+  <view class="del-order" wx:if="{{orderDetail.status == -2 || (orderDetail.status == -1 || orderDetail.status == 3)}}" catchtap="deleteOrder">
+    <button>删除订单</button>
+  </view>
+  <!-- 订单删除end -->
+  <view class="del-order" catchtap="cancellationOrder" wx:if="{{(orderDetail.status != -1 && orderDetail.status != -2) && (orderDetail.status != 3 && orderDetail.status != 1) && orderDetail.pay_type != 0}}">
+    <button>取消订单</button>
+  </view>
+</view>
+<view style="height: 120rpx;" wx:if="{{((orderDetail.pay_type == 0 && timerFlag == true) && (orderDetail.status != -1 && orderDetail.status != -2))}}"></view>
+<view class="footer-bottom" wx:if="{{(orderDetail.pay_type == 0 && timerFlag == true) && (orderDetail.status != -1 && orderDetail.status != -2)}}">
+  <view class="pay">
+    <view class="pay-item">
+      <text>应付</text>
+      <text>￥{{orderDetail.real_fee}}</text>
+    </view>
+    <view class="pay-item" catchtap="cancellationOrder">
+      <text>取消订单</text>
+    </view>
+    <view class="pay-item" catchtap="immediatePayment">
+      <text>立即支付</text>
+    </view>
+  </view>
+</view>
+<!--<modal
+title="是否取消该订单"
+hidden="{{hiddenModal}}"
+confirm-text="确定"
+cancel-text="取消"
+bindconfirm="listenerConfirm"
+bindcancel="listenerCancel" >
+</modal>
+<modal
+title="是否删除该订单"
+hidden="{{hiddenDeleteModal}}"
+confirm-text="确定"
+cancel-text="取消"
+bindconfirm="listenerConfirmDeleteOrder"
+bindcancel="listenerCancelDeleteOrder" >
+</modal>-->

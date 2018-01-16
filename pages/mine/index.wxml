@@ -1,0 +1,75 @@
+<import src="../template/template.wxml"/>
+<view class="mine-wrapper">
+  <!--用户信息界面start  -->
+  <view class="user-info">
+    <view class="avatar">
+      <image src="{{userInfo.avatar}}"></image>
+    </view>
+    <view class="user-name">
+      {{userInfo.nickname}}
+    </view>
+    <!-- 如果有会员卡则显示会员类别，else显示领取start -->
+    <view wx:if="{{userInfo.has_card}}" class="user-type">
+      <icon class="ic_gold" /><text> {{userInfo.group_name}}</text>
+    </view>
+    <view bindtap="gotoGetVipCard" wx:if="{{!userInfo.has_card && userInfo.card_is_opened}}" class="get-vipcard">
+    <image src="../../images/getvipcard.png"></image>
+    </view>
+    <!-- 如果有会员卡则显示会员类别，else显示领取end -->
+    <view class="asset">
+      <view bindtap="gotoPointRecord" class="item">
+        <view class="title">
+          积分<text>(分)</text>
+        </view>
+        <view class="num">
+          {{userInfo.credit1}}
+        </view>
+      </view>
+      <view bindtap="gotoBusinessRecord" class="item">
+        <view class="title">
+          余额<text>(元)</text>
+        </view>
+        <view class="num">
+          {{userInfo.credit2}}
+        </view>
+      </view>
+      <view bindtap="gotoMyCoupon" class="item">
+        <view class="title">
+          优惠券<text>(个)</text>
+        </view>
+        <view class="num">
+          {{userInfo.coupon_count}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--用户信息界面end  -->
+  <!-- 下部menu start -->
+  <!--<view bindtap="gotoOrderList" class="order">-->
+    <!--<view class="title">我的订单</view>-->
+    <!--<view class="num">{{userInfo.order_count}}个-->
+      <!--<icon class="icon_arrow-right" />-->
+    <!--</view>-->
+  <!--</view>-->
+  <view wx:if="{{userInfo.has_card && userInfo.card_is_opened}}" bindtap="gotoVipPay" class="vipcard border-1px">
+    <view class="title">余额支付</view>
+    <view class="num">
+      <icon class="icon_arrow-right" />
+    </view>
+  </view>
+  <view bindtap="gotoAddressList" class="address">
+    <view class="title">我的收货地址</view>
+    <view class="num">
+      <icon class="icon_arrow-right" />
+    </view>
+  </view>
+  <!-- 下部menu end -->
+</view>
+
+<modal class="v-modal" wx:if="{{hiddenModal}}" confirm-text="确定" confirm-color="#fd711c" bindconfirm="listenerConfirm" no-cancel="{{true}}">
+<image src="../../images/warnning-3.png"></image>
+<view class="modal-text">领卡成功</view>
+</modal>
+
+
+<template wx:if="{{!isGetAuthSetting}}" is="unauth"></template>

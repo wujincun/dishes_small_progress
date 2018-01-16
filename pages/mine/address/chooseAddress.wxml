@@ -1,0 +1,44 @@
+<!-- pages/index/address/choose-address.wxml -->
+<view class="address-list">
+  <view wx:for="{{addressList}}" wx:key="addressListKey" class="address-item {{index == addressList.length-1 ? '':'border-1px'}}" data-index="{{index}}" data-addressid="{{item.id}}" catchtap="setDefaultAddress" wx:if="{{from == 'mine' || item.in_distance == true}}">
+    <view class="address-item-check" wx:if="{{index == checkIndex}}">
+      <image src="/images/icon_check.png"></image>
+    </view>
+    <view class="address-item-check-nor" wx:else></view>
+    <view class="address-item-message">
+      <text>{{item.name}} {{item.address}} {{item.detail}}</text>
+      <view class="person-message">
+        <text>{{item.realname}}</text>
+        <text>{{item.gender_text}}</text>
+        <text>{{item.mobile}}</text>
+      </view>
+    </view>
+    <view class="address-item-edit" catchtap="gotoEditAddress" data-id="{{item.id}}" data-flag="change">
+      <image src="/images/icon_edit.png"></image>
+    </view>
+  </view>
+</view>
+<view class="address-list-nor">
+  <view class="address-item address-item-nor {{index == addressList.length-1 ? '':'border-1px'}}" wx:for="{{addressList}}" wx:key="addressListKey" wx:if="{{item.in_distance == false}}">
+    <view class="address-item-message" style="flex: 480rpx 0 0">
+      <text>{{item.name}}</text>
+      <view class="person-message">
+        <text>{{item.realname}}</text>
+        <text>{{item.gender_text}}</text>
+        <text>{{item.mobile}}</text>
+      </view>
+    </view>
+    <view class="address-nor">
+      <image src="/images/icon_address_nor.png"></image>
+    </view>
+    <view class="address-item-edit" catchtap="{{from == 'mine'?'gotoEditAddress':''}}" data-id="{{item.id}}" data-flag="change">
+      <image src="{{from=='mine'?'/images/icon_edit.png':'/images/icon_edit_nor.png'}}"></image>
+    </view>
+  </view>
+</view>
+<view bindtap="gotoEditAddress" class="btn-add border-1px-top">
+  <view>
+    <icon class="ic_add"/>
+    新增收货地址
+  </view>
+</view>

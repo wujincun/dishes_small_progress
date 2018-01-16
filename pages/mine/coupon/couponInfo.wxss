@@ -1,0 +1,4 @@
+.info-item{background:#fff;margin-top:20rpx;box-sizing:border-box;padding-bottom:30rpx}
+.header{padding:0 25rpx;font-size:30rpx;color:#272727;height:98rpx;box-sizing:border-box;border-bottom:1rpx solid #e5e5e5;line-height:98rpx}
+.content{padding:0 25rpx;font-size:28rpx;color:#888;min-height:134rpx}
+.content text{display:block;margin-top:20rpx}

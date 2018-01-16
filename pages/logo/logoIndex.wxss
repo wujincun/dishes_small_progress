@@ -1,0 +1,37 @@
+page {
+  background-color: #fff;
+}
+.contmain {
+  width: 100%;
+}
+.title {
+  text-align: center;
+  width: 100%;
+  font-size: 34rpx;
+  font-size: #000;
+  margin-top: 30rpx;
+  font-weight: bold;
+}
+.logo-img {
+  text-align: center;
+  width: 100%;
+  margin-top: 80rpx;
+}
+.logo-img wx-image {
+  width: 216rpx;
+  height: 216rpx;
+}
+.title02 {
+  width: 100%;
+  text-align: center;
+  font-style: 56rpx;
+  margin-top: -35rpx;
+  font-weight: bold;
+  font-size: 36rpx;
+}
+.title03 {
+  width: 100%;
+  text-align: center;
+  font-size: 26rpx;
+  margin-top: 30rpx;
+}

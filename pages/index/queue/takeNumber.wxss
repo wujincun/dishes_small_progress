@@ -1,0 +1,8 @@
+/* pages/line/takeNumber/takenumber.wxss */
+.take-number{background: #fff; padding-left: 29rpx; font-size: 34rpx; margin-top: 30rpx; }
+.take-number-item{height: 88rpx; line-height: 88rpx;}
+.take-number-item:last-child{border-bottom: none;}
+.btn-group{margin-top: 140rpx; text-align: center;}
+.btn-group .btn{width: 670rpx; height: 94rpx; display: inline-block;}
+.btn-determine{color: #fff; background: #fd711c;}
+button[disabled]{color: #fff !important; background: #fd711c !important;opacity: .4}

@@ -1,0 +1,29 @@
+/* pages/index/address/add/addAddress.wxss */
+.edit-address-box{background: #fff; box-sizing: border-box; padding-left: 36rpx; margin-top: 22rpx; font-size: 28rpx;}
+.edit-name, .edit-sex, .edit-tel, .edit-address{box-sizing: border-box; display: flex; align-items: center;}
+.edit-name>text{width: 125rpx; display: block; line-height: 78rpx;}
+.person-name{}
+.person-name, .person-identity{height: 78rpx; line-height: 78rpx; flex: 1;}
+.person-identity{display: flex; justify-content: flex-start; align-items: center;}
+.person-identity label, .person-identity image, .person-identity view, .person-identity text{float: left;}
+.person-identity label{margin-right: 60rpx; display: flex; align-items: center; }
+.person-identity .check-nor{width: 26rpx; height: 26rpx; border: 1px solid #010101; display: inline-block; margin-right: 16rpx; border-radius: 50%;}
+.person-name input{width: 100%; height: 100%;}
+label image{width: 30rpx; height: 30rpx; margin-right: 16rpx;}
+.edit-tel{height: 78rpx; line-height: 28rpx;}
+.edit-tel>text{width: 125rpx; display: inline-block;}
+.edit-address{display: flex;width:100%;}
+.edit-address text{flex: 0 0 125rpx;}
+.person-address{padding: 20rpx 0;flex: 1; display: flex; align-items: center;overflow: hidden;color: #999;}
+.edit-address input{height: 100%; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;}
+.edit-address image{width: 16rpx; height: 24rpx; flex: 0 0 16rpx; margin: 0 28rpx 0 16rpx;}
+.person-address-detail{margin-left: 118rpx;}
+.person-address-detail textarea{height: 116rpx; width: 100%; padding: 14rpx 14rpx 14rpx 0;}
+.btn-group{margin-top: 140rpx; text-align: center;}
+.btn-group .btn{width: 670rpx; height: 94rpx; display: flex; align-items: center; justify-content: center;}
+.btn-determine{color: #fff; background: #fd711c;}
+.btn-delete{border: 1px solid #fd711c; color: #fd711c; margin-top: 36rpx;}
+input[disabled] .phcolor{color: #cccccc;}
+.placeholder-color{color: #999;}
+.phcolor{color: #999;}
+.add-active{color: #333;}

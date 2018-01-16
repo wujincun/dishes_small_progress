@@ -1,0 +1,69 @@
+{
+  "pages": [
+    "pages/logo/logoIndex",
+    "pages/index/index",
+    "pages/mine/vipCard/getVipCard",
+    "pages/pay/pay",
+    "pages/mine/address/add/addAddress",
+    "pages/mine/address/chooseAddress",
+    "pages/order/confirmOrder/confirmOrder",
+    "pages/chooseMeals/cart/cart",
+    "pages/pay/payQuick/payQuick",
+    "pages/mine/record/pointRecord",
+    "pages/mine/record/businessRecord",
+    "pages/mine/coupon/coupon",
+    "pages/mine/coupon/couponUnused",
+    "pages/mine/coupon/couponChoose",
+    "pages/mine/coupon/couponInfo",
+    "pages/index/check/index",
+    "pages/index/queue/takeNumber",
+    "pages/order/index",
+    "pages/order/remarks/remark",
+    "pages/order/orderDetail/orderDetail",
+    "pages/order/orderAppointment/orderAppointment",
+    "pages/index/chooseShop/chooseShop",
+    "pages/index/check/payment/success",
+    "pages/index/check/payment/fail",
+    "pages/index/map/map",
+    "pages/index/queue/myNumber",
+    "pages/index/queue/queueNumber",
+    "pages/index/reserve/reserve",
+    "pages/chooseMeals/chooseMeals",
+    "pages/mine/index",
+    "pages/mine/coupon/getCoupon",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#f5f5f5",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": " ",
+    "navigationBarTextAlign": "center",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor":"#fff",
+    "selectedColor": "#fd711c",
+    "borderStyle":"black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./images/tab_ic_home_default.png",
+        "selectedIconPath": "./images/tab_ic_home_selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "iconPath": "./images/tab_ic_dingdan_default.png",
+        "selectedIconPath": "./images/tab_ic_dingdan_selected.png",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "iconPath": "./images/tab_ic_me_default.png",
+        "selectedIconPath": "./images/tab_ic_me_selected.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

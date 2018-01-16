@@ -1,0 +1,8 @@
+<view class="check-type">
+    <icon class="icon-success" type="warn" size="80"/>
+    <!--<text class="s-text">支付失败</text>-->
+    <text class="fail-txt">订单支付失败，请重新支付</text>
+</view>
+<view class="btn-box">
+    <button type="warn" size="default" bindtap="goPay"> 去支付 </button>
+</view>

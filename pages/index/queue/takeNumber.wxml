@@ -1,0 +1,15 @@
+<!--pages/line/takeNumber/takenumber.wxml-->
+<view class="take-number border-1px-top border-1px">
+  <view class="take-number-item clear border-1px">
+    <text class="col-22">客人数量</text>
+    <input placeholder-class="" placeholder="到店人数" value="{{countValue}}" maxlength="4" class="col-7" type="number" bindinput="getCount"/>
+  </view>
+  <view class="take-number-item clear">
+    <text class="col-22">联系电话</text>
+    <input placeholder-class="" placeholder="请输入手机号" class="col-7" type="number" maxlength="11" bindinput="getTel"/>
+  </view>
+</view>
+
+<view class="btn-group">
+  <button disabled="{{isDisable}}" bindtap="getNumber" class="btn btn-determine">确定</button>
+</view>

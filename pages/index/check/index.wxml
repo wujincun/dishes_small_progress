@@ -1,0 +1,41 @@
+<view class="maidan-wrapper">
+  <view class="cost-wrapper">
+    <view class="title">
+      输入金额手动付款
+    </view>
+    <view class="shop-name-wrapper">
+      <view class="picker-wrapper border-1px-top">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{cardPayData.store_list}}" range-key="{{'title'}}">
+          <view class="picker border-1px-bottom">
+            <label>店铺名称</label>{{cardPayData.store_list[index].title}}
+          </view>
+        </picker>
+      </view>
+      <view class="num border-1px-bottom">
+        <label>消费总金额</label>
+        <input placeholder-class="placeHolderColor" maxlength="8" bindinput="getCredit" value="{{credit}}" placeholder="请输入消费金额" type="digit" />
+      </view>
+       <view class='num border-1px-bottom'>
+        <label>不参与优惠金额</label>
+        <input placeholder-class="placeHolderColor" maxlength="8" bindinput="getNoCouponMoney" value="{{noCouponMoney}}" placeholder="询问服务员后输入" type="digit" />
+      </view> 
+      <view class="tips">
+        {{cardPayData.tips}}
+      </view>
+    </view>
+    <view class="btn-wrapper">
+      <button disabled="{{isAble}}" class="btn-pay" bindtap="cardDoPay">付款</button>
+    </view>
+  </view>
+  <view style="display:none;" class="erweima-wrapper">
+    <view class="erweima">
+      <image src="../../../images/img_erweima.png"></image>
+      <view class="btn {{isAble?'btn-disable':''}}">
+        点击生成二维码
+      </view>
+    </view>
+    <view class="desc">
+      *二维码金额与手动输入的金额一致，请核对后再付款
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+.coupon-item{margin-top:30rpx;background:#fff;box-shadow:0 2rpx 13rpx 0rpx rgba(0,0,0,.1);border-radius:4rpx}
+.coupon-list{padding:0 30rpx}
+.content{padding:10rpx 0;display:flex}
+.discount{flex:0 0 180rpx;height:180rpx;width:180rpx;box-sizing:border-box;border-right:1px dashed #e5e5e5;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.discount .num{color:rgba(253,113,28,1);font-size:58rpx;height:69rpx;margin-top: -22rpx;}
+.discount .num .ico{font-size:28rpx}
+.discount .num text:last-child{margin-left:10rpx}
+.discount .type{display:block;margin-top:10rpx;font-size:22rpx;color:#fd711c;letter-spacing:10rpx}
+.detail{padding:0 30rpx;flex:1;padding-top: 26rpx;margin-left: 1rpx;}
+.detail .name{width: 300rpx;font-size:30rpx;color:#363636;display:block;height:30rpx;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;padding-bottom: 10rpx;}
+.detail .cost{font-size:22rpx;display:block;color:#888;line-height:22rpx;margin-top:9rpx}
+.detail .end-time{font-size:22rpx;color:#888;margin-top:41rpx;display:block}
+.status{position:relative;flex:0 0 120rpx;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.status .btn-gain{background:#fd711c;border-radius:100rpx;width:120rpx;height:48rpx;text-align:center;color:#fff;opacity:.4;font-size:20rpx;display:block;line-height:48rpx;box-sizing:border-box}
+.status .btn-detail{display:block;color:#576b95;font-size:22rpx;position:absolute;bottom:20rpx;width: 100%;text-align: center;}
+.addinfo .item{display:block;margin-top:14rpx}
+.addinfo .item:first-child{margin-top:0}
+.info navigator{color:#6b98ff;display:inline-block}

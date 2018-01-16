@@ -1,0 +1,18 @@
+/* pages/line/myNumber/myNumber.wxss */
+.line-panel{width: 100%; height: 300rpx; overflow: hidden; position: relative;}
+.line-panel image{position: absolute; width: 100%; height: 100%; left: 0; top: 0; z-index: -1;}
+.line-surples, .line-number{color: #fff; text-align: center;}
+.line-number{font-size: 80rpx; padding-top: 45rpx; height: 112rpx; line-height: 112rpx;font-weight: bold;}
+.line-surples{padding-top: 15rpx; color: #fff; font-size: 34rpx;}
+.line-message{height: 286rpx; background: #fff; text-align: center; box-sizing: border-box; padding: 40rpx 30rpx; font-size: 34rpx;}
+.line-message-font{height: 56rpx; line-height: 56rpx; font-weight: bold; margin-bottom: 64rpx;}
+.line-message-font text:last-child{color: #fb7c3f;}
+.line-message button{width: 200rpx; height: 60rpx; line-height: 55rpx; border: 1px solid #fd711c; background: #fff; font-size: 26rpx; color: #fd711c;}
+.order-dish {height: 108rpx; margin-top: 16rpx; background: #fff; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; padding: 0 30rpx;}
+.order-dish-font{font-size: 34rpx;}
+.order-dish-font text:first-child{}
+.order-dish-font text:last-child{color: #d1d1d1;}
+.order-dish-btn button{width: 120rpx; height: 60rpx; line-height: 60rpx; background: #fd711c; color: #fff; font-size: 26rpx;border-radius: 3px;}
+.warning{padding: 25rpx 30rpx; font-size: 28rpx; color: #e64340;}
+.zt-title{font-size: 34rpx;font-weight: normal;}
+.zt-value{font-size: 40rpx;color: #fd711c;font-weight: bold}

@@ -1,0 +1,33 @@
+<!--pages/line/queueNumber/queueNumber.wxml-->
+<view class="query-number">
+  <view class="query-number-item border-1px" wx:for="{{queueData.queue_list}}">
+    <view class="query-number-left">{{item.table_limit}}</view>
+    <view class="query-number-right">
+      <text>等待桌数</text>
+      <text class="{{item.person_count == 0 ?'font-green':'font-orange'}}">{{item.person_count}}</text>
+    </view>
+  </view>
+  <text class="prompt">温馨提示：若排号已过会作废，请重新取号</text>
+  <view class="btn-group">
+    <button bindtap="gotoTakeNumber" class="btn btn-determine">立即取号</button>
+  </view>
+</view>
+<view class="store-info">
+  <view class="store-title">
+    <text>{{queueData.store.title}}</text>
+  </view>
+  <view class="store-info-item border-1px" bindtap="openMap" >
+    <image src="/images/icon_adress.png"></image>
+    <text>{{queueData.store.address}}</text>
+    <image src="/images/ic_youjiantou.png"></image>
+  </view>
+  <view class="store-info-item border-1px" bindtap="makeCall" >
+    <image src="/images/icon_tel.png"></image>
+    <text>{{queueData.store.tel}}</text>
+    <image src="/images/ic_youjiantou.png"></image>
+  </view>
+  <view class="store-info-item">
+    <image src="/images/icon_time.png"></image>
+    <text>营业时间：{{queueData.store.begin_time}} - {{queueData.store.end_time}}</text>
+  </view>
+</view>

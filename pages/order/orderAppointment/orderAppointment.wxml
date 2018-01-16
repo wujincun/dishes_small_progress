@@ -1,0 +1,82 @@
+<view class="order-detail-wrapper">
+  <!--订单状态start -->
+  <view class="order-type-wrapper">
+    <view class="order-type">
+      <image src="../../../images/icon_warning_4.png" wx:if="{{orderDetail.status == 0}}"></image>
+      <image src="../../../images/icon_warning_2.png" wx:if="{{orderDetail.status == -1 || orderDetail.status == -2}}"></image>
+      <image src="../../../images/warnning-3.png" wx:if="{{orderDetail.status == 1 || orderDetail.status == 3}}"></image>
+      <view class="order-text">
+        {{orderMessage}}
+      </view>
+      <text class="timer" wx:if="{{((orderDetail.pay_type == 0 && timerFlag == true) && (orderDetail.status != -1 && orderDetail.status != -2)) && flag == true}}">剩余时间：{{minutes}} 分 {{seconds}} 秒</text>
+    </view>
+    <view class="order-info">
+      <view class="location">
+        <text class="type">{{orderDetail.reserve_seat_type}}</text>
+        <!--<text> {{orderDetail.table_name}}</text>-->
+      </view>
+      <view class="time">
+        预约时间：{{orderDetail.reserve_time}}
+      </view>
+    </view>
+  </view>
+  <view class="order-detail">
+    <view class="appointment-cost" wx:if="{{orderDetail.real_fee != 0 && (!(orderDetail.pay_type == 0 && timerFlag == true) && (orderDetail.status != -1 && orderDetail.status != -2))}}">
+      <view class="title"><text>预</text><text>付</text><text>款:</text></view>
+      <view class="num">¥ {{orderDetail.real_fee || '-'}}</view>
+    </view>
+    <view class="user-info">
+      <view class="title">用户信息:</view>
+      <view class="num">{{orderDetail.username}} {{orderDetail.tel}}</view>
+    </view>
+    <view class="remarks">
+      <view class="title"><text>备</text><text>注:</text></view>
+      <view class="num">{{orderDetail.remark || '无'}}</view>
+    </view>
+    <view class="appointment-time">
+      <view class="title">下单时间:</view>
+      <view class="num">{{orderDetail.dateline}}</view>
+    </view>
+  </view>
+  <!--订单状态end  -->
+  <!-- 取消预订start -->
+  <view class="cancel-order" wx:if="{{((orderDetail.status != -1 && orderDetail.status != -2) && (orderDetail.status != 3 && orderDetail.status != 1) && orderDetail.pay_type != 0) || (flag == false && orderDetail.status == 0)}}" catchtap="cancellationOrder">
+    <button>取消预订</button>
+  </view>
+  <!-- 取消预订end -->
+  <!-- 删除订单start -->
+  <view class="cancel-order" wx:if="{{orderDetail.status == -2 || (orderDetail.status == -1 || orderDetail.status == 3)}}" catchtap="deleteOrder">
+    <button>删除订单</button>
+  </view>
+  <!-- 删除订单end -->
+</view>
+<view class="footer-bottom" wx:if="{{(orderDetail.pay_type == 0 && timerFlag == true) && (orderDetail.status != -1 && orderDetail.status != -2) && flag == true}}">
+<view class="pay">
+  <view class="pay-item">
+    <text>预订付款</text>
+    <text>￥{{orderDetail.real_fee}}</text>
+  </view>
+  <view class="pay-item" catchtap="cancellationOrder">
+    <text>取消预订</text>
+  </view>
+  <view class="pay-item" catchtap="immediatePayment">
+    <text>立即支付</text>
+  </view>
+</view>
+</view>
+<modal
+title="确定要取消订单么"
+hidden="{{hiddenModal}}"
+confirm-text="确定"
+cancel-text="取消"
+bindconfirm="listenerConfirm"
+bindcancel="listenerCancel" >
+</modal>
+<modal
+title="确定要删除订单么"
+hidden="{{hiddenDeleteModal}}"
+confirm-text="确定"
+cancel-text="取消"
+bindconfirm="listenerConfirmDeleteOrder"
+bindcancel="listenerCancelDeleteOrder" >
+</modal>

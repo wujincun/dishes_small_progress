@@ -1,0 +1,26 @@
+<!--pages/index/check/payment/success.wxml-->
+<view class="check-type">
+    <icon class="icon-success" type="success" size="80"/>
+    <text class="s-text">支付成功</text>
+</view>
+<view class="check-result">
+    <text class="r-title">{{shop}}</text>
+    <view class="result">
+        <view class="result-item">
+            <view class="item">消费金额</view>
+            <view clas="item">{{pay}}元</view>
+        </view>
+        <view class="result-item">
+            <view class="item">实际支付</view>
+            <view clas="item">{{realPay}}元</view>
+        </view>
+        <view class="result-item">
+            <view class="item">获得积分</view>
+            <view clas="item">{{integral}}分</view>
+        </view>
+        <view class="result-item">
+            <view class="item">订单编号</view>
+            <view clas="item">{{orderSn}}</view>
+        </view>
+    </view>
+</view>

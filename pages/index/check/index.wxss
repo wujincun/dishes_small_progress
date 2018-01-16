@@ -1,0 +1,25 @@
+.maidan-wrapper{width:100%;display:flex;flex-direction:column;justify-content:center}
+.cost-wrapper{flex:1;box-sizing:border-box;/*border-bottom:8rpx solid #ebebeb*/}
+.title{padding:0 0 0 30rpx;color:#888;font-size:28rpx;height:86rpx;line-height:86rpx}
+.shop-name-wrapper{background:#fff}
+.picker-wrapper{height:88rpx;line-height:88rpx;padding-left:30rpx;}
+.picker-wrapper .picker{position:relative;font-size:34rpx;box-sizing: border-box;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;padding-right: 40rpx;}
+.picker label{color:#000;margin-right:44rpx}
+.num{font-size: 34rpx;}
+.shop-name-wrapper .num{height:88rpx;display:flex;padding:0 30rpx;line-height:88rpx}
+.shop-name-wrapper .num label{font-size:34rpx;color:#000;display:inline-block;vertical-align:middle}
+.shop-name-wrapper .num input{display:inline-block;vertical-align:middle;height:88rpx;line-height:88rpx;flex:1}
+.shop-name-wrapper .num .placeHolderColor{color:#b2b2b2}
+.shop-name-wrapper label{margin-right:0;height:100%;width:282rpx;display:inline-block;font-size:34rpx}
+.shop-name-wrapper .tips{text-align:right;color:#888;font-size:26rpx;padding-right:30rpx;padding-top:30rpx;padding-bottom:50rpx;box-sizing:border-box;background:#f5f5f5}
+.btn-wrapper{padding:0 40rpx;background:#f5f5f5}
+.btn-pay{background-color:#fd711c;border-radius:10rpx;font-size:36rpx;color:#fff;text-align:center;line-height:94rpx;height:94rpx}
+.erweima-wrapper{flex:1;box-sizing:border-box;border-top:8rpx solid #ebebeb;display:flex;flex-direction:column;align-items:center}
+.erweima{margin-top:65rpx;background:#fff;width:400rpx;height:420rpx;border-radius:8rpx;padding:30rpx 60rpx 20rpx 60rpx;box-sizing:border-box}
+.erweima image{width:280rpx;height:280rpx}
+.erweima .btn{height:60rpx;box-sizing:border-box;border:1px solid #fd711c;border-style:inset;border-radius:10px;font-size:26rpx;color:#fd711c;line-height:60rpx;text-align:center}
+.erweima-wrapper .desc{margin-top:30rpx;font-size:26rpx;color:#e64340}
+button[disabled][type=default],wx-button[disabled]:not(type){background-color:#fd711c!important;border-radius:10rpx;font-size:36rpx;color:#fff!important;text-align:center;line-height:94rpx;height:94rpx;opacity:.4}
+.btn-disable{opacity:.4}
+.picker-wrapper .picker::after{content:' ';position:absolute;width:44rpx;height:44rpx;display:block;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAZlBMVEUAAADHx8z////IyM3IyM3v7+/IyM3Jyc3IyM3Jyc7Hx83IyM3Hx83IyM3IyM3IyM3Jyc3Jyc3JyczJyczIyM3Z2dne3t7Hx83IyMzHx83IyMzHx83Hx83Hx83Jyc3Kys7Hx8/Hx8z5bjUsAAAAIXRSTlMA+wGZiwOTgWxZubSloHp1Y15VUC4KB/jr5L+uqYVMQyDymawuAAAAnElEQVQ4y+3RuQ7DIBBF0cEGL3G8JM6+v///yQATFyij4C4uuB3oSK8YSqX+2uv59WXWW9nuzscHhWUtVC3aE6BGCsph2wi4gU0FqxquXMD7C4BgtWSbkaRXCFb7yYodWA/8quAq2Eq68aAi28BWdJy5TrqGS9OvzM2jflQxyyfzOm5Zt/h0p3hZzraMQdYF25lZ3dHsdEep1DJ6A2dKEKldRlkYAAAAAElFTkSuQmCC) no-repeat;background-size:cover;background-position:50% 50%;top:22rpx;right:16rpx}
+

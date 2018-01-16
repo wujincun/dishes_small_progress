@@ -1,0 +1,21 @@
+<!--<template name="v-model">-->
+  <!--<view class="v-model-header">{{title}}</view>-->
+  <!--<view class="v-model-content">{{content}}</view>-->
+  <!--<view class="v-model-footer">-->
+    <!--<view class="v-model-confirm">确定</view>-->
+    <!--<view class="v-model-cancel">取消</view>-->
+  <!--</view>-->
+<!--</template>-->
+<!-- 如果用户未授权显示的蒙层-->
+<template name="unauth">
+  <view class="cont">
+    <view class="cont-pic">
+      <image src="/images/push_logo.png"></image>
+    </view>
+    <view class="cont-text">您还没有授权，请授权后查看</view>
+    <view class="cont-btn">
+      <button bindtap="authSetting">去授权</button>
+    </view>
+    <view class="cont-text-1">Push点餐小程序</view>
+  </view>
+</template>

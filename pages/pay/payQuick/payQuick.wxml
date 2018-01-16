@@ -1,0 +1,16 @@
+<view class="quick-pay-wrapper">
+  <view class="shop-info">
+    <image class="logo" src="{{logo}}"></image>
+    <view class="name">{{title}}</view>
+  </view>
+  <view class="total">
+    <label>消费金额</label>
+    <input placeholder-class="" maxlength="8" bindinput="getCredit" value="{{credit}}" placeholder="请输入消费金额" type="digit"/>
+  </view>
+  <view class="tips">
+    *参加减免活动，请与店员当面确认金额后再支付
+  </view>
+  <view class="btn-wrapper">
+    <button class="btn-pay" disabled="{{isAble}}" bindtap="quickPay">付款</button>
+  </view>
+</view>

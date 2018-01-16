@@ -1,0 +1,31 @@
+<!--pages/line/myNumber/myNumber.wxml-->
+<view class="my-number">
+  <view class="line-panel">
+    <image src="/images/bg_mynumber.png"></image>
+    <view class="line-number">
+      <text>{{queueData.number}}</text>
+    </view>
+    <view class="line-surples">
+      <text>当前已到{{queueData.cur_number}}号,您还需等待{{queueData.wait_num}}桌</text>
+    </view>
+  </view>
+  <view class="line-message">
+      <view class="line-message-font">
+        <text class="zt-title">桌台类型：</text>
+        <text class="zt-value">{{queueData.title}}</text>
+      </view>
+      <button bindtap="cancelQueue">取消排队</button>
+  </view>
+  <view class="order-dish">
+    <view class="order-dish-font">
+      <text class="order-dish-title">提前点菜</text>
+      <text>（减少您的等待时间）</text>
+    </view>
+    <view class="order-dish-btn">
+      <button bindtap="gotoDianCan">点菜</button>
+    </view>
+  </view>
+  <view class="warning">
+    <text>*关注餐厅公众号，可查看排队最新情况</text>
+  </view>
+</view>

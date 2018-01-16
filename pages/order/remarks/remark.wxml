@@ -1,0 +1,7 @@
+<view class="remark">
+    <textarea maxlength="50" bindinput="getRemarks" placeholder="请输入口味、偏好等要求" value="{{remarkContent}}"/>
+    <view class="font-size">{{fontSize}}/45</view>
+</view>
+<view class="btn-group">
+    <button disabled="{{isDisable}}"  bindtap="backOrder" class="btn btn-determine">确定</button>
+</view>

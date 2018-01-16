@@ -1,0 +1,8 @@
+/* pages/order/remarks/remark.wxss */
+.remark{background: #fff;padding: 30rpx;position: relative;margin-top: 20rpx;}
+.remark textarea{width: 100%;font-size: 28rpx;}
+.font-size{position: absolute;bottom: 40rpx;right: 40rpx;font-size: 28rpx;color: #9c9c9c;}
+.btn-group{margin-top: 50rpx; text-align: center;}
+.btn-group .btn{width: 670rpx; height: 94rpx; display: inline-block;}
+.btn-determine{color: #fff; background: #fd711c;}
+button[disabled]{color: #fff !important; background: #fd711c !important;opacity: .4}

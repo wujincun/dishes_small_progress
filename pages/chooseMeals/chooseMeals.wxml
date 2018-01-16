@@ -1,0 +1,203 @@
+<view class="wrapper">
+  <!--桌台信息start-->
+  <view wx:if="{{dining_mode == 1}}" class="table-info">
+    <swiper autoplay="{{true}}" vertical="{{true}}" interval="{{2000}}" circular="{{true}}" style="height:100%;">
+      <swiper-item>{{tableInfo.text}} 最低消费:{{tableInfo.limit_price}}元</swiper-item>
+      <swiper-item wx:if="{{tableInfo.table_fee != 0}}">{{tableInfo.table_fee == 0?'':('台位费：'+tableInfo.table_fee+'元/'+(tableInfo.table_fee_type==1?'每桌':'每人'))}}</swiper-item>
+      <!--<view class="table-info-text">{{tableInfo.text}} 最低消费:{{tableInfo.limit_price}}元 {{tableInfo.table_fee == 0?'':('(台位费：'+tableInfo.table_fee+'元/'+(tableInfo.table_fee_type==1?'每桌)':'每人)'))}}</view>-->
+    </swiper>
+  </view>
+  <!--桌台信息end-->
+  <view class="list-box">
+  <!--左侧边栏-->
+    <view class="section list-box-slidebar">
+      <scroll-view scroll-y="{{!isShowShopCart&&!tGoodsInfo}}" style="height:{{windowHeight-51-(dining_mode==1?35:0)}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="" scroll-top="">
+        <view class="list-slide-bar">
+          <view data-index="{{index}}" bindtap="selectCurrentCategory" wx:key="categoriesList" wx:for="{{categoriesList}}" wx:for-item="category" wx:for-index="index" class="slide-bar-item {{(currentCategory==index)?'active':''}}">
+            <view class="slide-bar-border"></view>
+            <view wx:if="{{category.number&&category.number>0}}" class="slide-bar-num">{{category.number}}</view>
+            <text class="text">{{category.name}}</text> <!--style="border-bottom:{{currentCategory == (index - 1)?none:attribute}}"-->
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!--左侧边栏-->
+    <!--右侧边栏-->
+    <view class="section list-box-content">
+      <scroll-view scroll-y="{{!isShowShopCart&&!tGoodsInfo}}" style="height:{{windowHeight-51-(dining_mode==1?35:0)}}px;" class="scroll-view_H">
+        <view class="store-list-moudle">
+        <view class="store-list-title">{{categoriesList[currentCategory].name}}</view>
+          <view wx:if="{{goodsList[currentCategory]}}" class="store-list-content">
+            <!-- 商品循环start -->
+            <view class="store-list-item {{(goods.total == 0)?'item-out':(goods.hasoption>0)?'item-spec':'item-size'}}" wx:key="goodsList" wx:for="{{goodsList[currentCategory]}}" wx:for-index="index" wx:for-item="goods">
+              <!-- 商品图片 -->
+              <view class="item-img">
+                <image src="{{goods.thumb}}"></image>
+              </view>
+              <!-- 商品详情 -->
+              <view class="item-msg">
+                <view class="item-title"><view class="goods-title">{{goods.title}}</view><icon wx:if="{{goods.is_sale == 1}}" class="ic_tejia" /></view>
+                <view class="item-integral">赠送{{goods.credit}}积分</view>
+
+                <view wx:if="{{true}}" class="item-price">
+                  <view class="new-price">
+                    <text>￥</text>
+                    <text wx:if="{{goods.hasoption==0}}">{{goods.sale_name?goods.sale_price:goods.marketprice}}</text>
+                    <text wx:else>{{goods.minPrice}}</text>
+                  </view>
+                  <view class="old-price" wx:if="{{goods.sale_name}}">
+                    <text>￥</text>
+                    <text wx:if="{{goods.hasoption == 0}}">{{goods.marketprice}}</text>
+                    <text wx:if="{{goods.minPriceold}}">{{goods.minPriceold}}</text>
+                    <view class="old-price-line"></view>
+                  </view>
+                </view>
+
+                
+
+                <image wx:if="{{goods.total==0}}" class="item-out-logo" src="/images/icon_sellout.png"></image>
+                <view wx:else>
+                  <view class="item-num" wx:if="{{!(goods.hasoption>0)}}">
+                    <view wx:if="{{goods.number&&goods.number>0}}" bindtap="removeGoodsToShopcart" data-index="{{index}}" class="btn-reduce">
+                      <image src="/images/icon_reduce.png"></image>
+                    </view>
+                    <!--<input class="num" class="num" type="number" value="{{goods.number?goods.number:0}}"  />
+                    -->
+                    <text wx:if="{{(goods.number&&goods.number!=0)}}" class="num">{{goods.number?goods.number:0}}</text>
+                    <view data-index="{{index}}" bindtap="addGoodsToShopcart" class="btn-plus">
+                      <image src="/images/icon_plus.png"></image>
+                    </view>
+                  </view>
+                  <view data-index="{{index}}" bindtap="showChooseDish" class="btn-spec" wx:if="{{goods.hasoption >0}}">
+                    <text>选规格</text>
+                    <view wx:if="{{goods.number&&goods.number>0}}" class="item-spec-num">{{goods.number}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!-- 商品循环end -->
+          </view>
+          <view wx:else class="poor-goods">
+          <!--没有商品内容写在此处！-->
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!--右侧边栏-->
+    <!-- 底部栏start -->
+    <view class="list-box-footer">
+      <view wx:if="{{dining_mode == 2 && !isShowShopCart}}" bindtap="{{shopCartObject.count?'showShopCart':''}}" class="shopcart shopcart-pre">
+        <image wx:if="{{shopCartObject.count}}" src="/images/icon_shop_cart.png"></image>
+        <image wx:else src="/images/icon_shop_cart_nor.png"></image>
+        <view wx:if="{{shopCartObject.count}}" class="shopcart-num">{{shopCartObject.count}}</view>
+      </view>
+
+      <view wx:if="{{dining_mode != 2}}" class="shopcart shopcart-pre shopcart-pre-nor">
+        <view>已选<text class="orange"> {{shopCartObject.count}} </text>份</view>
+      </view>
+
+      <view class="subtitle" wx:if="{{dining_mode == 1}}">总计</view>
+      <view wx:if="{{shopCartObject.price && !isShowShopCart && dining_mode == 2}}" class="shopcart-price">￥{{shopCartObject.price}}</view>
+      <view wx:if="{{isShowShopCart}}" class="shopcart-price-nor">￥{{shopCartObject.price}}</view>
+      <view wx:if="{{dining_mode == 1 ||dining_mode == 7}}" class="shopcart-price-pre">￥{{shopCartObject.price}}</view>
+      
+      <button wx:if="{{dining_mode == 1}}" bindtap="{{shopCartObject.count?'gotoCart':''}}" class="{{shopCartObject.count?'btn-pre':''}}">选好了</button>
+      <button wx:if="{{dining_mode == 7}}" bindtap="{{shopCartObject.count?'gotoConfirmOrder':''}}" class="{{shopCartObject.count?'btn-pre':''}}">选好了</button>
+      <button wx:if="{{dining_mode == 2}}" bindtap="{{(shopCartObject.price>=sendingprice&&shopCartObject.count)?'gotoConfirmOrder':''}}" class="{{(shopCartObject.price>=sendingprice&&shopCartObject.count)?'btn-pre':''}}">{{shopCartObject.price==0?'¥'+sendingprice+'起送':shopCartObject.price>=sendingprice?'选好了':'差¥'+dValue+'起送'}}</button>
+    </view>
+    <!-- 底部栏end -->
+    <!-- 购物车详情弹窗start -->
+    <view class="shopcart-mark" wx:if="{{isShowShopCart}}">
+      <view bindtap="closeShopCart" class="mask"></view>
+      <view class="model-shopcart">
+        <view class="shopcart-head">
+          <text>购物车</text>
+          <view bindtap="toggleDialog" class="delete-shoopcart-item">
+            <image src="/images/icon_delete.png"></image>
+            <text>清空</text>
+          </view>
+        </view>
+        <view class="shopcart-body">
+          <view wx:if="{{goods.total > 0}}" wx:for="{{selectedGoodsList}}" wx:for-index="index" wx:for-item="goods" class="shopcart-item {{selectedGoodsList.length-1 == index?'':'border-1px'}}">
+            <view class="shop-cart-item-name">
+              <text>{{goods.title}}</text>
+              <text class="remarks" wx:if="{{goods.option_name}}">{{goods.option_name}}</text>
+            </view>
+            <view class="shop-cart-item-price">
+              <text>￥{{goods.sumPrice}}</text>
+            </view>
+            <view class="shop-cart-item-num">
+              <view class="item-num">
+                <view wx:if="{{goods.total&&goods.total>0}}" bindtap="removeGoodsToShopcartFromCart" data-index="{{index}}" class="btn-reduce">
+                  <image src="/images/icon_reduce.png"></image>
+                </view>
+                <!--<input class="num" class="num" type="text" value="1"  />
+                -->
+                <text class="num">{{goods.total}}</text>
+                <view data-index="{{index}}" bindtap="addGoodsToShopcartFromCart" class="btn-plus">
+                  <image src="/images/icon_plus.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 购物车详情弹窗end -->
+    <!-- 确认弹窗start -->
+    <!--<modal style="text-align:center" hidden="{{!isShowConfirmDialog}}" title="提示" confirm-text="清空" cancel-text="取消" bindcancel="toggleDialog" bindconfirm="dialogConfirm">确认要清空吗</modal>-->
+    <!-- 确认弹窗end -->
+    <!-- 首次进入堂点页面弹窗start -->
+    <view bindtap="closeHappyRestaurant" wx:if="{{isFirstInto}}" class="happy-restaurant">
+      <view class="mask"></view>
+      <view class="container">
+        <image src="../../images/happy_restaurant.png"></image>
+      </view>
+    </view>
+    <!-- 首次进入堂点页面弹窗end -->
+    <!-- 规格选择弹窗start -->
+          <view class="mark-bg" wx:if="{{tGoodsInfo}}">
+            <view bindtap="closeChooseDish" class="mask"></view>
+            <view class="model-top">
+              <view class="model-header">
+                <view bindtap="closeChooseDish" class="close-model">
+                <image src="/images/bacha.png"></image>
+                </view>
+                <text class="dish-title">{{goodsList[tGoodsInfo.x][tGoodsInfo.y].title}}</text>
+              </view>
+              <view class="model-body">
+                <view wx:key="goods-specs" wx:for="{{goodsList[tGoodsInfo.x][tGoodsInfo.y].specs}}" wx:for-item="spec" wx:for-index="specIndex" class="choose-wrapper">
+                  <text class="dish-text">{{spec.title}} :</text>
+                  <view class="dish-list">
+                    <view bindtap="chooseDish" wx:key="spec-item" wx:for="{{spec.items}}" wx:for-item="item" wx:for-index="itemIndex" data-specIdx="{{itemIndex}}" data-index="{{tGoodsInfo.y}}" data-specRow="{{specIndex}}" data-itemId="{{item.id}}" class="dish-item {{(selectObject[specIndex] == item.id)?'dish-item-active':''}}">
+                      {{item.title}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="model-footer">
+                <view class="dish-price">
+                  <text wx:key="goodsOptions" wx:for="{{goodsList[tGoodsInfo.x][tGoodsInfo.y].options}}" wx:for-item="option" wx:if="{{(option.selectNum === maxSelectNum)}}">￥{{(tGoodsInfo.is_sale == 1)?option.sale_price:option.price}}</text>
+                </view>
+                <view data-index="{{tGoodsInfo.y}}" bindtap="{{(goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].stock == 0)?'':'toChooseNum'}}" wx:if="{{!goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].number || goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].number == 0}}" class="join-shopcart {{(goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].stock == 0)?'join-shopcart-disable':''}}">
+                  <text class="{{(goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].stock == 0)?'disabled':''}}">加入购物车</text>
+                </view>
+                <view wx:else class="choose-dish">
+                  <view class="item-num">
+                    <view wx:if="{{(goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].number&&goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].number!=0)}}" bindtap="removeGoodsToShopcart" data-index="{{tGoodsInfo.y}}" class="btn-reduce">
+                      <image src="/images/icon_reduce.png"></image>
+                    </view>
+                    <!--<input class="num" class="num" type="text" value="1"  />
+                  -->
+                    <text hidden="{{!(goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].number&&goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].number!=0)}}" class="num">{{goodsList[tGoodsInfo.x][tGoodsInfo.y].options[selectObject.optionIdx].number}}</text>
+                    <view data-index="{{tGoodsInfo.y}}" bindtap="addGoodsToShopcart" class="btn-plus">
+                      <image src="/images/icon_plus.png"></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 规格选择弹窗end -->
+  </view>
+</view>

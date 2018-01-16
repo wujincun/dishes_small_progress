@@ -1,0 +1,43 @@
+<!--优惠券容器start  -->
+<view class="wrapper">
+  <view bindtap="gotoCouponInfo" class="explain">
+    <icon class="ic_gantanhao" /> 优惠规则说明
+  </view>
+  <view wx:if="{{couponList.length>0}}" class="coupon-list">
+    <view wx:for="{{couponList}}" class="coupon-item">
+      <view class="content">
+        <view wx:if="{{item.type == '优惠券'}}" class="discount">
+          <text class="num">
+          <text class="ico">¥</text>{{item.discount}}</text>
+          <text class="type">代金券</text>
+        </view>
+        <view wx:else class="discount">
+          <text class="num">{{item.discount}}<text class="ico">折</text></text>
+          <text class="type">折扣券</text>
+        </view>
+        <view class="detail">
+          <text class="name">{{item.title}}</text>
+          <text class="cost">满{{item.condition}}元可用</text>
+          <text class="end-time">到期日：{{item.endtime}}</text>
+        </view>
+        <view class="status">
+          <text data-index="{{index}}" bindtap="toggleShow" class="btn-detail">{{item.isShowDetail?'收起':'其他说明'}}</text>
+        </view>
+      </view>
+      <view class="addinfo border-1px-top" wx:if="{{item.isShowDetail}}">
+        <text wx:for="{{item.description}}" class="item">{{item}}</text>
+      </view>
+    </view>
+  </view>
+  <!--isShowPoor-->
+  <view wx:if="{{isShowPoor}}" class="no-coupon">
+  暂无可用优惠券～
+  <button bindtap="gotoGetCoupon">去领取</button>
+  </view>
+  <!-- info start -->
+  <view  wx:if="{{couponList.length>0}}" class="info">
+  没有更多可用券了  <navigator bindtap="{{unUseisNull?'':'gotoUnused'}}">查看失效券 ></navigator>
+  </view>
+  <!-- info end -->
+</view>
+<!--优惠券容器end  -->

@@ -1,0 +1,9 @@
+@import './common.wxss';
+.explain{font-size:24rpx;text-align:right;color:#888;margin-top:18rpx;margin-right:18rpx;display: flex;align-items: center;justify-content: flex-end;}
+
+.addinfo{box-sizing:border-box;border-top:1px solid #e6e6e6;padding:20rpx 30rpx;color:#888;font-size:22rpx}
+
+.info{text-align:center;margin-top:85rpx;font-size:26rpx;color:#b2b2b2;padding-bottom: 44rpx;}
+
+.coupon-list text,.coupon-list view{color:#b2b2b2!important}
+.ic_gantanhao{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAAKhQTFRFAAAA////kpKSj4+PlpaWlJSUkpKSjIyMi4uLjo6OiYmJjIyMioqKiIiIioqKioqKiIiIiYmJiYmJiYmJiYmJiYmJioqKiYmJiYmJiIiIiIiIiYmJiYmJiYmJiYmJiYmJiYmJiYmJiIiIiYmJiYmJiIiIiIiIiYmJiIiIiIiIiYmJiIiIiYmJiIiIiIiIiIiIiIiIiYmJiIiIiYmJiIiIiIiIiYmJiIiIXBN0YwAAADd0Uk5TAAEHEBETFR8hJCcqMDxIVVpbXWNue3x9gIOHjI2mp6iqq7DAwsPI0dLV4OHp6u7w9fb3+Pn9/v3L6NUAAAD3SURBVCjPbVJrd4IwDI1MxarT1edmQIcwRof4Kpr//89WaEv1yP3QpLn33JOTBECjy7e/hfxLlkN4xNvmTCJEDAXR98DV3w8SmU4ZysvU1j/K1HcqP70vjL6MvCp2OO9U0Ytuk9r/kNZ14ES8Trz02FdhI41PQ4AvA9XnGY25tVIIrj2lY/ACRjPYCvMZxyf6tIzYQRY2utgRYQYFthFYgGwnJOTtVjkkoo0QCSxdu45gtIIh4SuBNAKI7Egc4cu9egcXPcRxXEEPsaz3OL3rsVt4Ec11trg9L4q+bD45Pq62nDtVP7g2x7B/vpPebJcVMv9Zj0zhH20aG0BAQxDfAAAAAElFTkSuQmCC) no-repeat;background-size:cover;width:24rpx;height:24rpx;display:inline-block;vertical-align:middle;margin-right: 10rpx;}

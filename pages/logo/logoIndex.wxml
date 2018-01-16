@@ -1,0 +1,10 @@
+<!--pages/logo/logoIndex.wxml-->
+<view class="contmain">
+    <view class="title">Push点餐小程序</view>
+    <view class="logo-img">
+        <image src="../../images/push_logo.png"></image>
+    </view>
+    <view class="title02">演示专用</view>
+    <view class="title03">该小程序仅提供演示和体验，所有数据均为测试数据</view>
+    <button type="btn-logo" size="" loading="" plain="" bindtap="onClickIndex" style="width:50%;background: #FD711C;color:#fff;font-size:28rpx;height:70rpx;margin-top:50rpx;"> 立即体验 </button>
+</view>

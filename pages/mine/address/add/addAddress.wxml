@@ -1,0 +1,58 @@
+<!--pages/index/address/add/addAddress.wxml-->
+<view class="edit-address-box">
+  <view class="edit-tel">
+    <text>联系人</text>
+    <view class="person-name">
+      <input class="border-1px" type="text" placeholder="收货人姓名" maxlength="10" placeholder-class="placeholder-color" value="{{username}}" bindinput="listenedUserName" />
+    </view>
+  </view>
+  <view class="edit-tel border-1px">
+    <text></text>
+    <view class="person-identity">
+      <label catchtap="listenedSex" data-sex="0">
+        <image src="/images/icon_check_pre.png" wx:if="{{sex == 0}}"></image>
+        <view class="check-nor" wx:elif="{{sex == 1}}"></view>
+        <view>先生</view>
+      </label>
+      <label catchtap="listenedSex" data-sex="1">
+        <image src="/images/icon_check_pre.png" wx:if="{{sex == 1}}"></image>
+        <view class="check-nor" wx:elif="{{sex == 0}}"></view>
+        <view>女士</view>
+      </label>
+    </view>
+  </view>
+
+  <view class="edit-tel border-1px">
+    <text>电话</text>
+    <view class="person-tel">
+      <input type="number" maxlength="11" placeholder="收货人电话" placeholder-class="placeholder-color" value="{{telephone}}" bindinput="listenedUserPhone" />
+    </view>
+  </view>
+  <view bindtap="{{isCanChooseLocation?'chooseAddress':''}}" class="edit-address">
+    <text>地址</text>
+    <view class="person-address {{city?'add-active':''}}">
+      {{city?city:'选择地址'}} {{address}}
+    </view>
+    <image src="/images/icon_pre.png"></image>
+  </view>
+  <view class="edit-address-datail">
+    <view class="person-address-detail border-1px-top">
+      <textarea hidden="{{!hiddenModal}}" placeholder="例：5号楼501室" placeholder-class="phcolor" value="{{addressDetails}}" bindinput="listenedAdressDetail"/>
+    </view>
+  </view>
+</view>
+
+<view class="btn-group">
+  <button class="btn btn-determine" catchtap="newDeliveryAddress">确定</button>
+  <button class="btn btn-delete" wx:if="{{id}}" catchtap="deleteAddress">删除</button>
+</view>
+
+<!--<modal
+title="提示"
+hidden="{{hiddenModal}}"
+confirm-text="确定"
+cancel-text="取消"
+bindconfirm="listenerConfirm"
+bindcancel="listenerCancel">
+确定要删除收货地址么
+</modal>-->

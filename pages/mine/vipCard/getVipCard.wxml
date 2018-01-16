@@ -1,0 +1,14 @@
+<!-- pages/mine/vipCard/getVipCard.wxml -->
+<view class="take-number">
+  <view class="take-number-item number-space">
+    <view class="title"><view>姓</view> <view>名</view></view>
+    <input value="{{name}}" bindinput="getName" class="input" type="text" placeholder="请输入姓名"  />
+  </view>
+  <view class="take-number-item">
+    <view class="title">手机号</view>
+    <input value="{{number}}" bindinput="getNumber" class="input" maxlength="11" type="number" placeholder="请输入手机号"  />
+  </view>
+</view>
+<view class="btn-group">
+  <button disabled="{{isAble}}" bindtap="getVipCard" class="btn btn-determine">确定</button>
+</view>

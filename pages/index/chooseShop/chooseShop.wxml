@@ -1,0 +1,10 @@
+<!-- pages/index/choose-shop/choose-shop.wxml -->
+<view class="choose-shop-wrapper">
+  <view bindtap="taped" class="choose-list">
+    <view wx:for="{{shopList}}" wx:for-index="index" wx:for-item="shop" data-index="{{index}}"
+          class="choose-item {{selectIndex === index?'choose-item-active':''}}">
+      <view data-index="{{index}}" class="item-name">{{shop.title}}</view>
+      <view data-index="{{index}}" class="icon icon-selected"></view>
+    </view>
+  </view>
+</view>

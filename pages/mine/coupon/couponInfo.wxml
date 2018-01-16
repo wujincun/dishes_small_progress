@@ -1,0 +1,36 @@
+<view class="wrapper">
+  <!-- 优惠券列表start -->
+  <view class="info-list">
+    <!-- 说明项start -->
+    <view class="info-item">
+      <view class="header">
+        一、优惠方式说明
+      </view>
+      <view class="content">
+        <text>本店有多种优惠方式，分别为：会员卡折扣、折扣券、代金券等；</text>
+        <text>但每单优惠方式只可使用一种，系统自动为您匹配优惠力度最大的方式，您可自主切换所需优惠方式</text>
+      </view>
+    </view>
+    <!-- 说明项end -->
+    <view class="info-item">
+      <view class="header">
+        二、会员卡优惠说明
+      </view>
+      <view class="content">
+        <text>会员卡优惠分2种：</text>
+        <text>第一种为顾客使用点菜系统自主下单支付时，系统自动匹配会员卡打折优惠；</text>
+        <text>第二种为到店消费顾客，会员未自主使用点菜系统点单，而是向店员点菜，结账时使用会员卡余额支付，系统也会默认匹配打折优惠</text>
+      </view>
+    </view>
+    <view class="info-item">
+      <view class="header">
+        三、优惠时间说明
+      </view>
+      <view class="content">
+        <text>优惠券有固定使用时间，一切解释权归商家所有</text>
+        <text>失效的优惠券，从失效日期起，保留显示2周，2周后系统自动清除</text>
+      </view>
+    </view>
+  </view>
+  <!-- 优惠券列表end -->
+</view>
